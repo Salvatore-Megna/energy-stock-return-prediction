@@ -1,8 +1,10 @@
-# ESG Scores and Relative Returns in the Energy Sector
+# ESG & Energy Return Prediction
 
-An analysis of 12 energy companies in the US and Europe between 2013 and 2024. I examine whether monthly ESG scores help predict returns relative to sector benchmarks, and compare the risk-adjusted returns of utility and oil & gas portfolios.
+**Python · Random Forest · Temporal validation · Portfolio analysis**
 
-The project uses Random Forest regression for the forecasting exercise and an annualized information ratio for the portfolio comparison.
+Do ESG scores help predict energy-company returns? This study examines 12 US and European companies over 2013–2024, modeling returns relative to sector benchmarks and comparing utility and oil & gas portfolios.
+
+Random Forest regression supports the forecasting exercise; an annualized information ratio supports the portfolio comparison. The historical report and the revised Python evaluation are documented separately below.
 
 ## Reports
 
@@ -43,7 +45,9 @@ Details of the temporal split, the bootstrap procedure and differences from the 
 
 ## Run the analysis
 
-Python 3.11 or later is recommended. From the repository root:
+> **Data access:** The original source archive is now private. A fresh public clone cannot retrieve the inputs anonymously. Running the analysis requires authorized local copies of the three original files in `data/raw/`. The reports, methodology and recorded results remain available without those inputs.
+
+Python 3.11 or later is recommended. After placing the original inputs in `data/raw/`, run from the repository root:
 
 ```bash
 python -m pip install -r requirements.txt
@@ -51,7 +55,7 @@ python scripts/fetch_originals.py
 python src/esg_analysis.py
 ```
 
-The input script downloads the three source files from the [earlier project archive](https://github.com/Salvatore-Megna/Salvatore-Megna.github.io/tree/main/projects/esg-performance/assets) and checks their recorded Git blob hashes. They are not committed here because redistribution permissions for the ESG panel have not been confirmed.
+The input script validates the recorded Git blob hashes of files already present locally. Its legacy download fallback still points to the private archive and cannot supply missing inputs to public users. The data are not committed here because redistribution permissions for the ESG panel have not been confirmed. See [data sources and file details](data/README.md).
 
 Results are saved as CSV files under `outputs/`. To run the checks:
 
@@ -59,14 +63,14 @@ Results are saved as CSV files under `outputs/`. To run the checks:
 python -m unittest discover -s tests -p 'test_*.py' -v
 ```
 
-The analysis and tests also run in [GitHub Actions](https://github.com/Salvatore-Megna/esg-energy-return-modeling/actions/runs/41823752182).
+An earlier analysis and test run is recorded in [GitHub Actions](https://github.com/Salvatore-Megna/esg-energy-return-modeling/actions/runs/41823752182). That run predates the archive becoming private; it does not establish that a fresh public clone can now retrieve the inputs. The retrieval script and data-dependent CI still need to be adapted to the restricted-data setup.
 
 ## Files
 
 | Location | Contents |
 |---|---|
 | `src/esg_analysis.py` | Data preparation, models and portfolio analysis |
-| `scripts/fetch_originals.py` | Source-file retrieval and checks |
+| `scripts/fetch_originals.py` | Original-input hash checks and legacy archive retrieval |
 | `report/` | Original 2025 report, typeset in LaTeX without changing its content |
 | `docs/results.md` | Full results by period and region |
 | `docs/methodology.md` | Method choices and limitations |
