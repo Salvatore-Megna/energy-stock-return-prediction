@@ -1,0 +1,4 @@
+# I sorgenti LaTeX e le bibliografie sono documentazione scientifica.
+# Restano visibili e versionati, ma non contano come codice nelle statistiche.
+*.tex linguist-documentation=true
+*.bib linguist-documentation=true
